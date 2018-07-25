@@ -3,15 +3,14 @@
 <div>
 
 <div v-if='formColumns.length > 0'>
- <search-form :form-columns='formColumns' @search-form='handleFilter'></search-form>
+    <search-form :form-columns='formColumns' @search-form='handleFilter' @search-export='handleExport'></search-form>
 </div>
 
   <el-table
     :data='data' 
     stripe
     style="width: 100%">
-    <el-table-column v-for='item in columns' :key='item.prop'
-      v-bind="item">
+    <el-table-column v-for='item in columns' :key='item.prop' v-bind="item" >
     </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">

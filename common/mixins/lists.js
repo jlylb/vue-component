@@ -59,6 +59,24 @@ export default {
           )
         )
       }
+    },
+    handleExport(columns) {
+      console.log(columns)
+      import('@/vendor/Export2Excel').then(excel => {
+        const tHeader = columns
+        const filterVal = columns
+        const data = this.formatJson(filterVal, this.data)
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: 'table-list'
+        })
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        return v[j]
+      }))
     }
   },
   created() {

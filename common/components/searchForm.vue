@@ -26,7 +26,11 @@
 
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="onSubmit">查询</el-button>
+            <el-button type="primary" @click="onSubmit" icon='el-icon-search'>查询</el-button>
+            <el-button 
+            type="primary" 
+            icon="el-icon-download" 
+            @click="handleDownload">{{$t('table.export')}}</el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -48,6 +52,9 @@ export default {
     methods: {
         onSubmit() {
             this.$emit('search-form',this.formModel)
+        },
+        handleDownload() {
+             this.$emit('search-export', Object.keys(this.formModel))
         }
     },
     created() {
